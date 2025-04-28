@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Header from './components/Header.vue'
-import FirstView from './components/FirstView.vue';
+import FirstView from './components/FirstView.vue'
+import WhyIviGreen from './components/WhyIviGreen.vue'
 import Carousel from './components/Carousel.vue'
 </script>
 
@@ -8,6 +9,8 @@ import Carousel from './components/Carousel.vue'
   <div>
     <Header />
     <FirstView />
+    <WhyIviGreen />
+    <Carousel />
   </div>
 </template>
 

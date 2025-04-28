@@ -179,9 +179,6 @@ button {
   font-size: 20px;
 }
 
-/* .mobile-nav a:hover {
-  color: #3B5998; 
-} */
 
 .mobile-menu-contact {
   margin-top: auto; 
