@@ -142,18 +142,19 @@ button {
 }
 .mobile-menu {
   position: fixed;
-  top: 140px; 
+  top: 72px; 
   left: 0;
   right: 0;
   bottom: 0;
   background-color: #fff;
   z-index: 1000;
-  padding: 0px auto;
+  padding: 0 auto;
   box-sizing: border-box;
   overflow-y: auto;
 }
 
 .mobile-menu-content {
+  padding-top: 68px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -166,8 +167,6 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 24px; 
-  margin-bottom: 32px; 
 }
 
 .mobile-nav a {
@@ -176,22 +175,24 @@ button {
   font-weight: 500;
   text-decoration: none;
   transition: color 0.2s;
+  padding-bottom: 48px;
+  font-size: 20px;
 }
 
-.mobile-nav a:hover {
+/* .mobile-nav a:hover {
   color: #3B5998; 
-}
+} */
 
 .mobile-menu-contact {
   margin-top: auto; 
-  padding-top: 32px;
-  border-top: 1px solid #eee; 
+  margin-bottom: 54px;
 }
 
 .mobile-menu-contact a {
-  color: #000;
+  color: #3E468F;
   font-size: 16px;
   text-decoration: none;
+
 }
 
 .nav-desktop {

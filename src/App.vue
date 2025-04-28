@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import Header from './components/Header.vue'
+import FirstView from './components/FirstView.vue';
 import Carousel from './components/Carousel.vue'
 </script>
 
 <template>
   <div>
     <Header />
-    <!-- <Carousel /> -->
+    <FirstView />
   </div>
 </template>
 
