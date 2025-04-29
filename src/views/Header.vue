@@ -14,7 +14,7 @@ function toggleMenu() {
       <div class="logo-container">
         <img src="../assets/logo.svg" alt="Logo" />
       </div>
-      <div class="navNCart-container">
+      <div class="nav-n-cart-container">
           <button class="cart">
             <img src="../assets/basket.svg" alt="">
             <span class="cart-count">0</span>
@@ -52,6 +52,15 @@ function toggleMenu() {
 </template>
 
 <style>
+.header-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1001; 
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
 .nav-container {
   padding: 6px 16px;
   display: flex;
@@ -67,7 +76,7 @@ function toggleMenu() {
     }
   }
 }
-.navNCart-container {
+.nav-n-cart-container {
     display: flex;
     gap: 15px; 
     align-items: center;

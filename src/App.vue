@@ -1,16 +1,26 @@
 <script setup lang="ts">
-import Header from './components/Header.vue'
-import FirstView from './components/FirstView.vue'
-import WhyIviGreen from './components/WhyIviGreen.vue'
-import Carousel from './components/Carousel.vue'
+import Header from './views/Header.vue'
+import FirstView from './views/FirstView.vue'
+import WhyIviGreen from './views/WhyIviGreen.vue'
+import Carousel from './views/FirstCarousel.vue'
+import InDemand from './views/InDemand.vue'
+import BestSellersCarousel from './views/BestSellersCarousel.vue'
+import Testimonials from './views/Testimonials.vue'
+import Includes from './views/Includes.vue'
 </script>
 
 <template>
   <div>
     <Header />
+    <main>
     <FirstView />
     <WhyIviGreen />
     <Carousel />
+    <InDemand />
+    <BestSellersCarousel />
+    <Testimonials />
+    <Includes />
+    </main>
   </div>
 </template>
 
@@ -18,6 +28,9 @@ import Carousel from './components/Carousel.vue'
 header {
   line-height: 1.5;
   padding: 0;
+}
+main {
+  padding-top: 72px;
 }
 
 .logo {
