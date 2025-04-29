@@ -23,9 +23,15 @@ export function useCarousel(itemsLength) {
     }
   }
 
-  function next() {
-    if (currentIndex.value < itemsLength - 1) {
-      currentIndex.value++
+  function next(gap) {
+    if (gap) {
+      if (currentIndex.value < ((itemsLength)/2 -1)) {
+        currentIndex.value++
+      }
+    } else {
+      if (currentIndex.value < itemsLength - 1) {
+        currentIndex.value++
+      }
     }
   }
 

@@ -1,9 +1,9 @@
 <script setup>
-import icon1 from '../assets/images/includes/Icon(1).svg'
-import icon2 from '../assets/images/includes/Icon(2).svg'
-import icon3 from '../assets/images/includes/Icon(3).svg'
-import icon4 from '../assets/images/includes/Icon(4).svg'
-import icon5 from '../assets/images/includes/Icon.svg'
+import icon2 from '../assets/images/includes/Icon(1).svg'
+import icon3 from '../assets/images/includes/Icon(2).svg'
+import icon4 from '../assets/images/includes/Icon(3).svg'
+import icon5 from '../assets/images/includes/Icon(4).svg'
+import icon1 from '../assets/images/includes/Icon.svg'
 let title = 'What\'s included in our educational kits?'.toUpperCase()
 import arrow from '../assets/images/bestSellersCarousel/icons/arrow.svg'
 </script>
@@ -11,7 +11,8 @@ import arrow from '../assets/images/bestSellersCarousel/icons/arrow.svg'
 <template>
     <section class="includes-section">
       <h2 class="title">{{title}}</h2>
-      <ul class="topics">
+      <div class="content-container">
+        <ul class="topics">
         <li class="topic">
           <span class="icon">
             <img :src="icon1" alt="Icon 1" />
@@ -44,22 +45,20 @@ import arrow from '../assets/images/bestSellersCarousel/icons/arrow.svg'
         </li>
       </ul>
       <img src="../assets/images/includes/img.png" alt="books" class="image" />
-      <div class="button-container">
+      </div>
         <button class="show-all">
             <span class="button-text">Show all kits</span> <img :src="arrow" alt="arrow">
         </button>
-      </div>
+      
     </section>
   </template>
   
   <style scoped>
   .includes-section {
-    width: 375px;
+    width: 100%;
     background-color: #E8E8ED;
     padding: 48px 16px;
-    border-radius: 10px;
-    margin: 0;
-    border: none;
+    margin: auto;
   }
   
   .title {
@@ -112,11 +111,8 @@ import arrow from '../assets/images/bestSellersCarousel/icons/arrow.svg'
     margin-top: 24px;
     border-radius: 20px;
   }
-  .button-container {
-    display: flex;
-    justify-content: center;
-  }
   .show-all {
+    margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -131,6 +127,49 @@ import arrow from '../assets/images/bestSellersCarousel/icons/arrow.svg'
             font-weight: 700;
             margin-right: 8px;
         }
+    }
+    @media (min-width: 768px) {
+      .title {
+        font-size: 40px;
+      }
+      .includes-section {
+        padding: 100px 120px 100px 120px;
+      }
+      .content-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+        height: 644px;
+      }
+      .icon {
+        min-width: 100px;
+        height: 100px;
+      }
+      .topics {
+        width: 584px;
+        height: 644px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: stretch;
+      } 
+      .image {
+        margin: 0;
+        width: 584px;
+        height: 644px;
+        object-fit: cover;
+      } 
+      .topic {
+        height: 116px;
+      }
+      .text {
+        font-size: 20px;
+      }
+      .show-all {
+        .button-text {
+        font-size: 20px;
+        }
+      }
     }
   </style>
   

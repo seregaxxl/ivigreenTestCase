@@ -53,5 +53,14 @@
   border-radius: 16px;
   margin-bottom: 16px;
 }
+@media (min-width: 768px) {
+  .carousel-image {
+    margin: 0 auto;
+    height: 550px;
+    width: 70%;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+}
 </style>
   

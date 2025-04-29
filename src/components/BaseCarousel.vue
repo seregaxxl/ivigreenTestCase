@@ -6,6 +6,8 @@
       >
         <slot />
       </div>
+      <button class="arrow left" @click="prev()" v-if="length > 1"><img :src="leftarrow" alt="leftarrow"></button>
+      <button class="arrow right" @click="next()" v-if="length > 1"><img :src="rightarrow" alt="rightarrow"></button>
     </div>
   
     <div class="dots" :class="{ inside: dotsPosition === 'inside' }">
@@ -19,8 +21,9 @@
   </template>
   
   <script setup>
-  import { toRefs } from 'vue'
   import { useCarousel } from '../composables/useCarousel'
+  import rightarrow from '../assets/images/carousel/rightarrow.svg'
+  import leftarrow from '../assets/images/carousel/leftarrow.svg'
   
   const props = defineProps({
     length: {
@@ -42,7 +45,7 @@
   },
   })
   
-  const { currentIndex, startTouch, moveTouch, goTo } = useCarousel(props.length)
+  const { currentIndex, startTouch, moveTouch, goTo, next, prev } = useCarousel(props.length)
   </script>
   
 <style scoped>
@@ -50,6 +53,7 @@
     overflow: hidden;
     max-width: 343px;
     width: 100%;
+    position: relative;
   }
   
   .carousel-track {
@@ -87,5 +91,55 @@
         background: #32cd7a;
     opacity: 1;
   }
+
+  .arrow {
+  display: none;
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #32cd7a;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.arrow.left {
+  left: 10px;
+}
+
+.arrow.right {
+  right: 10px;
+}
+
+@media (min-width: 768px) {
+  .dots {
+    display: none;
+  }
+
+  .arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .carousel {
+    max-width: 100%;
+  }
+}
+@media (min-width: 1024px) {
+  .arrow.left {
+  left: 10px;
+}
+
+.arrow.right {
+  right: 10px;
+}
+}
+@media (min-width: 1440px) {
+  
+}
 </style>
   

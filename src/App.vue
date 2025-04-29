@@ -7,6 +7,8 @@ import InDemand from './views/InDemand.vue'
 import BestSellersCarousel from './views/BestSellersCarousel.vue'
 import Testimonials from './views/Testimonials.vue'
 import Includes from './views/Includes.vue'
+import SendEmail from './views/SendEmail.vue'
+import Footer from './views/Footer.vue'
 </script>
 
 <template>
@@ -20,6 +22,8 @@ import Includes from './views/Includes.vue'
     <BestSellersCarousel />
     <Testimonials />
     <Includes />
+    <SendEmail />
+    <Footer />
     </main>
   </div>
 </template>

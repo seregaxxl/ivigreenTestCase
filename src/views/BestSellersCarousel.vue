@@ -1,13 +1,17 @@
 <template>
     <section class="bestsellers-carousel-section">
         <h2 class="title">OUR BESTSELLERS</h2>
-        <BaseCarousel :length="items.length" :inactiveColor="'white'" :inactiveOpacity="1">
+        <BaseCarousel v-if="itemsPerSlide === 1" :length="items.length" :inactiveColor="'white'" :inactiveOpacity="1" :itemsPerSlide="itemsPerSlide">
             <div
             v-for="(item, index) in items"
             :key="index"
+            :style="{
+                minWidth: itemsPerSlide === 2 ? 'calc(50% - 12px)' : '100%',
+                flexShrink: 0
+            }"
             class="carousel-item"
             >
-                <div v-if="item.bundle" class="inner-carousel">
+                <div v-if="(item.bundle)" class="inner-carousel">
                     <BaseCarousel :length="item.bundleImgs.length" :inactiveColor="'white'" :inactiveOpacity="1" :dotsPosition="'inside'">
                         <div
                         v-for="(subItem, subIndex) in item.bundleImgs"
@@ -36,6 +40,31 @@
                 <button class="add-button">Add to Cart</button>
             </div>
         </BaseCarousel>
+        <TwoItemsCarousel v-if="itemsPerSlide == 2" :length="items.length" >
+            <div
+            v-for="(item, index) in items"
+            :key="index"
+            class="carousel-item"
+            :style="{
+                minWidth: itemsPerSlide === 2 ? 'calc(50% - 12px)' : '100%',
+                flexShrink: 0
+            }"
+            >
+                <div class="img-container">
+                    <img :src="item.image" alt="Item" class="carousel-image" />
+                </div>
+                <div class="price">
+                    <span class="new-price">${{item.price}}</span><span class="old-price">${{item.originalPrice}}</span><span class="discount">{{item.discount}}% off</span>
+                </div>
+                <div class="item-title">
+                   <span class="bundle-title">{{item.bundleTitle ? item.bundleTitle.toUpperCase() : ''}}</span> <span class="item-title">{{item.title}}</span>  
+                </div>
+                <div class="item-description">
+                    {{item.description}}
+                </div>
+                <button class="add-button">Add to Cart</button>
+            </div>
+        </TwoItemsCarousel>
         <button class="show-all">
             <span class="button-text">Show all</span> <img :src="arrow" alt="arrow">
         </button>
@@ -43,8 +72,9 @@
   </template>
     
 <script setup>
-    import { ref } from 'vue'
+    import { ref, onMounted } from 'vue'
     import BaseCarousel from '../components/BaseCarousel.vue'
+    import TwoItemsCarousel from '../components/TwoItemsCarousel.vue'
     import img1 from '../assets/images/bestSellersCarousel/Image.png'
     import img2 from '../assets/images/bestSellersCarousel/Image(1).png'
     import img3 from '../assets/images/bestSellersCarousel/Image(2).png'
@@ -54,6 +84,10 @@
     import img7 from '../assets/images/bestSellersCarousel/Image(6).png'
     import img8 from '../assets/images/bestSellersCarousel/Image(7).png'
     import arrow from '../assets/images/bestSellersCarousel/icons/arrow.svg'
+
+
+    
+    const itemsPerSlide = ref(1)
 
     const items = ref([
         { image: img1, price:19.99, originalPrice:39.99, discount: 50, title: 'RELATIONSHIPS FOR TEENS AND TWEENS', description: 'Equip your teens with the necessary self-confidence, enabling them to cultivate healthy relationship habits for their happiness', bundle:false },
@@ -65,6 +99,12 @@
         { image: img7, price:19.99,originalPrice:39.99, discount: 50, title: 'WORKBOOK BASED ON THE BOOK «LIFE SKILLS 101»', description: 'With 80+ engaging exercises for teens and twins to practice life skills', bundle:false },
         { image: img8, price:19.99,originalPrice:39.99, discount: 50, title: '+100 SELF-LOVE PRACTICES FOR YOUNG ADULTS', description: 'Start your journey of self-love and happiness today without having to change everything about your life!', bundle:false },
     ])
+    onMounted(() => {
+  if (window.innerWidth >= 768) {
+    itemsPerSlide.value = 2
+  }
+})
+
 
 </script>
     
@@ -178,6 +218,59 @@
         font-weight: 700;
         margin-right: 8px;
     }
-
+    @media (min-width: 1440px)  {
+        .bestsellers-carousel-section {
+            padding: 100px 140px;
+            background: #3E468F;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .title {
+            font-size: 40px;
+            margin-bottom: 32px;  
+        }
+        .carousel-item {
+            min-width: none;
+            width: 464px;
+            height: 701px;
+            display: flex;
+            padding: 24px;
+            flex-direction: column;
+        }
+        .show-all {
+            margin-top: 0px;
+        }
+        .img-container{
+            width: 416px;
+            height: 256px;
+        }
+        .new-price{
+            font-size: 28px;
+        }
+        .old-price{
+            font-size: 20px;
+        }
+        .discount{
+            font-size: 20px;
+        }
+        .item-title {
+            font-size: 28px;
+        }
+        .item-description {
+            font-size: 20px;
+        }
+        .add-button{
+            margin-top: auto;
+            width: 416px;
+        }
+        .show-all {
+            margin-top: 32px;
+        }
+        .button-text {
+            font-size: 20px;
+        }
+    }
 </style>
     

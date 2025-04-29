@@ -1,19 +1,46 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { onMounted, onBeforeUnmount } from 'vue'
 
 const isOpen = ref(false)
+const isVisible = ref(true)
+
+let lastScrollY = window.scrollY
 
 function toggleMenu() {
   isOpen.value = !isOpen.value
 }
+
+function handleScroll() {
+  const currentScrollY = window.scrollY
+  isVisible.value = currentScrollY < lastScrollY || currentScrollY < 10
+  if (currentScrollY > lastScrollY && isOpen.value) {
+    isOpen.value = false
+  }
+  lastScrollY = currentScrollY
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 </script>
 
 <template>
-  <header class="header-container">
+  <header class="header-container" :class="{ 'hidden-header': !isVisible }">
     <div class="nav-container">
       <div class="logo-container">
         <img src="../assets/logo.svg" alt="Logo" />
       </div>
+      <nav class="nav-desktop">
+            <a href="#">Products</a>
+            <a href="#">About Ivi Green</a>
+            <a href="#">FAQ</a>
+            <a href="#">Blog</a>
+    </nav>
       <div class="nav-n-cart-container">
           <button class="cart">
             <img src="../assets/basket.svg" alt="">
@@ -27,13 +54,7 @@ function toggleMenu() {
           </div>
         </button>
       </div>
-    <nav class="nav-desktop">
-            <a href="#">Shop</a>
-            <a href="#">FAQ</a>
-            <a href="#">Professionals</a>
-            <a href="#">Blog</a>
-            <button class="cta-button">Get Educational Kits</button>
-    </nav>
+
       <div v-if="isOpen" class="mobile-menu">
         <div class="mobile-menu-content">
           <nav class="mobile-nav">
@@ -52,6 +73,9 @@ function toggleMenu() {
 </template>
 
 <style>
+header{
+  display: block !important;
+}
 .header-container {
   position: fixed;
   top: 0;
@@ -60,6 +84,11 @@ function toggleMenu() {
   z-index: 1001; 
   background-color: #fff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.hidden-header {
+  transform: translateY(-100%);
 }
 .nav-container {
   padding: 6px 16px;
@@ -186,6 +215,7 @@ button {
   transition: color 0.2s;
   padding-bottom: 48px;
   font-size: 20px;
+  background-color: transparent ;
 }
 
 
@@ -203,15 +233,31 @@ button {
 
 .nav-desktop {
   display: none;
+  font-size: 20px;
+  a {
+    color: #2C2C2C;
+    background-color: transparent ;
+  }
+  a:hover{
+      background-color: transparent ;
+  }
 }
 
 @media (min-width: 768px) {
+  .header-container{
+    width: 100vw;
+  }
   .nav-desktop {
+    width: 70%;
     display: flex;
     gap: 24px;
     align-items: center;
+    justify-content: space-between
   }
   .mobile-menu {
+    display: none;
+  }
+  .hamburger-container {
     display: none;
   }
 }
